@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			isStaff: false,
 			isAuthenticated: false,
 			plants:[],
-			master:[]
+			master:[],
 		},
 		actions: {
 			
