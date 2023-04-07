@@ -21,6 +21,7 @@ export const SignUp = () => {
       e.preventDefault();
       console.log(store,actions);
       actions.fetchSignup(email, password,setShowMessage)
+      setEmail("")
     }
     
 
@@ -33,7 +34,8 @@ export const SignUp = () => {
                         placeholder="Ejemplo@gmail.com" 
                         type="email"
                         className="w-100 p-2"
-                        onChange={(e)=> {setEmail(e.target.value)}}/>
+                        onChange={(e)=> {setEmail(e.target.value)}}
+                        />
                 
                 <div style={{ position: "relative", display: "block"}} className="w-100">
                 <input  name="password" placeholder="Ingresa tu contraseña" 

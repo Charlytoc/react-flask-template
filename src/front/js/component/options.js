@@ -7,6 +7,7 @@ import AddOrder from "./addOrder";
 import AddModels from "./addModels";
 
 import GetOrders from "./getOrders";
+import GetModels from "./getModels";
 
 export default function Options({setComponent}) {
 
@@ -26,7 +27,7 @@ export default function Options({setComponent}) {
             <h2>Modelos</h2>
             <button onClick={()=>{setComponent(<AddModels/>)}}>Agregar nuevo modelo</button>
             <button>Ver catálogo de clientes</button>
-            <button>Ver inventario de modelos</button>
+            <button onClick={()=>{setComponent(<GetModels/>)}}>Ver inventario de modelos</button>
           </div>
         </section>
       
