@@ -9,6 +9,7 @@ export const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false)
+    const [showMessage, setShowMessage] = useState(false)
 
 
     // This will toggle between displaying or not the password
@@ -19,7 +20,7 @@ export const SignUp = () => {
       // console.log(email,password);
       e.preventDefault();
       console.log(store,actions);
-      actions.fetchSignup(email, password)
+      actions.fetchSignup(email, password,setShowMessage)
     }
     
 
@@ -45,6 +46,9 @@ export const SignUp = () => {
         
                 <button className="button-dark" onClick={(e)=> handleClickSignup(e)} >Crear</button>
                 <button className="button-light bg-gray"><Link to ="/catalogue">Regresa al catálogo</Link></button>
+                <div>
+                {showMessage && <div className="popover">Cuenta Creada Exitosamente!</div>}
+                </div>
                 
             </form>
             </div>
