@@ -20,29 +20,31 @@ export default function AddTransaction(){
             size40:-transaction.size40,
             size41:-transaction.size41,
         });
-        actions.addTransaction(transaction)
+        actions.addTransaction(transaction,setShowMessage)
+        setTransaction({})
     }
-  
+    
     
     return<>
+    
         <h1 className="text-color container  d-flex justify-content-center">Nueva Transacción</h1>
         <div className=" d-flex justify-content-center container">
-            {/* <button onClick={()=>{console.log(transaction);}}>hola</button> */}
+            {/* <button onClick={()=>{console.log();}}>hola</button> */}
         <form className="row w-50 p-3 ">
-            <input placeholder="Descripcion" onChange={(e)=>{setTransaction({...transaction,description:e.target.value})}}/>
-             <input placeholder="Talla 34" onChange={(e)=>{setTransaction({...transaction,size34:parseInt(e.target.value)})}}/>
-            <input placeholder="Talla 35" onChange={(e)=>{setTransaction({...transaction,size35:parseInt(e.target.value)})}}/>
-            <input placeholder="Talla 36" onChange={(e)=>{setTransaction({...transaction,size36:parseInt(e.target.value)})}}/>
-            <input placeholder="Talla 37" onChange={(e)=>{setTransaction({...transaction,size37:parseInt(e.target.value)})}}/>
-            <input placeholder="Talla 38" onChange={(e)=>{setTransaction({...transaction,size38:parseInt(e.target.value)})}}/>
-            <input placeholder="Talla 39" onChange={(e)=>{setTransaction({...transaction,size39:parseInt(e.target.value)})}}/>
-            <input placeholder="Talla 40" onChange={(e)=>{setTransaction({...transaction,size40:parseInt(e.target.value)})}}/>
-            <input placeholder="Talla 41" onChange={(e)=>{setTransaction({...transaction,size40:parseInt(e.target.value)})}}/>
+            <input placeholder="Descripcion" onChange={(e)=>{setTransaction({...transaction,description:e.target.value})}} value={transaction.description || ''}/>
+             <input placeholder="Talla 34" onChange={(e)=>{setTransaction({...transaction,size34:parseInt(e.target.value)})}} value={transaction.size34 || ''}/>
+            <input placeholder="Talla 35" onChange={(e)=>{setTransaction({...transaction,size35:parseInt(e.target.value)})}} value={transaction.size35 || ''}/>
+            <input placeholder="Talla 36" onChange={(e)=>{setTransaction({...transaction,size36:parseInt(e.target.value)})}} value={transaction.size36 || ''}/>
+            <input placeholder="Talla 37" onChange={(e)=>{setTransaction({...transaction,size37:parseInt(e.target.value)})}} value={transaction.size37 || ''}/>
+            <input placeholder="Talla 38" onChange={(e)=>{setTransaction({...transaction,size38:parseInt(e.target.value)})}} value={transaction.size38 || ''}/>
+            <input placeholder="Talla 39" onChange={(e)=>{setTransaction({...transaction,size39:parseInt(e.target.value)})}} value={transaction.size39 || ''}/>
+            <input placeholder="Talla 40" onChange={(e)=>{setTransaction({...transaction,size40:parseInt(e.target.value)})}} value={transaction.size40 || ''}/>
+            <input placeholder="Talla 41" onChange={(e)=>{setTransaction({...transaction,size41:parseInt(e.target.value)})}} value={transaction.size41 || ''}/>
         <div className="d-flex justify-content-center mt-3">
-            <button className="border-0 bg-pink me-3" onClick={(e)=>{e.preventDefault();actions.addTransaction(transaction,setShowMessage)}}>Sumar Plantas Al Inventario</button>
+            <button className="border-0 bg-pink me-3" onClick={(e)=>{e.preventDefault();actions.addTransaction(transaction,setShowMessage); setTransaction({})}}>Sumar Plantas Al Inventario</button>
             <button className="border-0 bg-pink" onClick={(e)=>{subtractPlants(e)}}>Entregar Plantas A Un Maestro</button>
         </div>
-        <div style={{}}>
+        <div style={{position: "relative"}}>
         {showMessage && <div className="popover">Transacción Exitosa</div>}
         </div>
 

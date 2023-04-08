@@ -233,3 +233,9 @@ def get_plants_types():
     plants = Plants.query.all()
     plants_list = [plant.short_serializer() for plant in plants]
     return jsonify(plants_list), 200
+
+@api.route("/get/model/types", methods=["GET"])
+def get_model_types():
+    models = Shoe.query.all()
+    models_list = [model.serialize() for model in models]
+    return jsonify(models_list), 200

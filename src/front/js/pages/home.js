@@ -8,6 +8,7 @@ import GetPlants from "../component/getPlants";
 import AddModels from "../component/addModels";
 import AddOrder from "../component/addOrder";
 import AddTransaction from "../component/addTransaction";
+import GetModels from "../component/getModels";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
@@ -15,7 +16,7 @@ export const Home = () => {
 	return(
 
 		<div>
-			<AddTransaction/>
+			<GetModels/>
 		</div>
 	)
 };

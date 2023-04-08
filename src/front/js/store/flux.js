@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			
-			fetchSignup: async(email,password)=>{
+			fetchSignup: async(email,password,showMessage)=>{
 				fetch(process.env.BACKEND_URL+"/api/signup", {
 					method: 'POST',
 					headers: {
@@ -22,7 +22,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				  })
 					.then(response => response.json())
-					.then(data => console.log(data))
+					.then(data => {showMessage(true);
+					setTimeout(()=>{
+						showMessage(false)
+					},4000)})
+
 					// .catch(error => console.log(error,"este error viene del flux"));
 			},
 			
@@ -239,7 +243,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					size41:0
 					
 				  });
-				  console.log(response.status);
+				//   console.log(response.status);
 				  if(response.status === 200){
 					showMessage(true);
 					setTimeout(()=>{
