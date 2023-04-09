@@ -20,7 +20,6 @@ export default function GetOrders(){
     }
 
     return<>
-    <button onClick={()=>{console.log(models);}}>hola</button>
         <div className="">
             <table className="table">
                 <thead>

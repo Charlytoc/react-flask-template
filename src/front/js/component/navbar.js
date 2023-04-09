@@ -41,7 +41,7 @@ const AuthWidget = () => {
   const {store,actions}=useContext(Context);
   return (
     <>
-    {/* <button  onClick={()=>{console.log(store.isAuthenticated)}}>hola</button> */}
+    <button>Hello</button>
       <div className="menu-button">
       <i onClick={()=> setShowDrop(!showDrop)} className="fa-solid fa-bars button-dark"></i>
       {showDrop && <div className="drop-menu">
