@@ -239,3 +239,9 @@ def get_model_types():
     models = Shoe.query.all()
     models_list = [model.serialize() for model in models]
     return jsonify(models_list), 200
+
+@api.route("/get/transaction/plants", methods=["GET"])
+def get_transaction_plants():
+    transactions = PlantsTransactions.query.all()
+    transaction_list = [transaction.serialize() for transaction in transactions]
+    return jsonify(transaction_list), 200

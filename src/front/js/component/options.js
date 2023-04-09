@@ -8,6 +8,8 @@ import AddModels from "./addModels";
 
 import GetOrders from "./getOrders";
 import GetModels from "./getModels";
+import GetTransactionPlants from "./getTransactionPlants";
+import AddTransaction from "./addTransaction";
 
 export default function Options({setComponent}) {
 
@@ -22,8 +24,8 @@ export default function Options({setComponent}) {
             <h2>Plantas</h2>
             <button onClick={()=>setComponent(<AddPlants />)}>Agregar tipo de planta</button>
             <button onClick={()=>setComponent(<GetPlants />)}>Ver inventario de plantas</button>
-            <button>Entregar plantas a maestro</button>
-            <button>Ver movimientos de plantas</button>
+            <button onClick={()=>setComponent(<AddTransaction />)}>Entregar plantas a maestro</button>
+            <button  onClick={()=>setComponent(<GetTransactionPlants />)}>Ver movimientos de plantas</button>
             <h2>Modelos</h2>
             <button onClick={()=>{setComponent(<AddModels/>)}}>Agregar nuevo modelo</button>
             <button>Ver catálogo de clientes</button>
