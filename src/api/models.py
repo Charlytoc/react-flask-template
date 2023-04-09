@@ -171,7 +171,7 @@ class PlantsTransactions(db.Model):
             "id": self.id,
             "description": self.description,
             # "master":  Master.query.get(self.master_id).serialize(),
-            "plant": Plants.query.get(self.plant_id).serialize(),
+            "plant": Plants.query.get(self.plant_id).short_serializer(),
             "size34": self.size34,
             "size35": self.size35,
             "size36": self.size36,

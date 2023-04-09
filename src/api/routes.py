@@ -247,3 +247,9 @@ def get_masters():
     masters = Master.query.all()
     masters_list = [master.serialize() for master in masters]
     return jsonify(masters_list), 200
+
+@api.route("/get/transaction/plants", methods=["GET"])
+def get_transaction_plants():
+    transactions = PlantsTransactions.query.all()
+    transaction_list = [transaction.serialize() for transaction in transactions]
+    return jsonify(transaction_list), 200

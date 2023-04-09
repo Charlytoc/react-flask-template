@@ -16,7 +16,7 @@ export const Home = () => {
 	return(
 
 		<div>
-			<GetModels/>
+			
 		</div>
 	)
 };
