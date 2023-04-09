@@ -239,3 +239,10 @@ def get_model_types():
     models = Shoe.query.all()
     models_list = [model.serialize() for model in models]
     return jsonify(models_list), 200
+
+
+@api.route("/get/masters", methods=["GET"])
+def get_masters():
+    masters = Master.query.all()
+    masters_list = [master.serialize() for master in masters]
+    return jsonify(masters_list), 200

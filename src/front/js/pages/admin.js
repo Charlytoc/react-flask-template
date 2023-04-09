@@ -7,11 +7,10 @@ import GetPlants from "../component/getPlants";
 import AddPlants from "../component/addPlants";
 import AddOrder from "../component/addOrder";
 export const Admin = () => {
-	const [component, setComponent] = useState(<AddOrder />)
-
+	const [component, setComponent] = useState(<AddOrder />) 
 	const setAndClose = (comp) => {
 		setComponent(comp);
-		setShowOptions(false)
+
 	}
 
 	return (
