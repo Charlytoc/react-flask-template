@@ -152,6 +152,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					phone: order.phone,
 					delivery_date: order.delivery_date,
 					price: order.price,
+					master_id: order.master,
+					description: order.description
 				  });
 				  console.log(response.data);
 				  if(response.status === 200){
