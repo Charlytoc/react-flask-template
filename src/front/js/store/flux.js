@@ -136,6 +136,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(response => response.json())
 				.then(data => setStore({orders: data.orders}))
 			},
+			updateOrders: (newOrdersArray)=>{
+				const store = getStore();
+				setStore({orders: newOrdersArray})
+				
+			},
       		authenticateUser: () => {
 					const token = localStorage.getItem('token')
 					if (token) {
@@ -143,7 +148,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 			},
 			addOrder : async (order,showMessage) => {
-
 				try {
 				  const response = await axios.post(`${process.env.BACKEND_URL}/api/add/order`, {
 					plant_id: order.plant_id,
@@ -155,7 +159,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					master_id: order.master,
 					description: order.description
 				  });
-				  console.log(response.data);
 				  if(response.status === 200){
 					showMessage(true);
 					setTimeout(()=>{

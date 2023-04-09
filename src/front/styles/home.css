@@ -111,3 +111,7 @@ button > a:hover {
   .color-row{
     background-color: aquamarine;
   }
+
+  .clickeable{
+    cursor: pointer;
+  }

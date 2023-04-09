@@ -8,6 +8,7 @@ export default function GetOrders(){
     // const [orders, setOrders] = useState(store.orders)
     const{store,actions}= useContext(Context)
     const [selectedRows, setSelectedRows] = useState([])
+    const [sortOrder, setSortOrder] = useState("asc"); // or "desc"
     
     
     const handleClickRow = (orderId)=>{
@@ -39,39 +40,67 @@ export default function GetOrders(){
     // }, [store.orders])
     
 
-    const filterBy =() =>{
-        let newOrdersArray = store.orders
+    const filterByNumber = (param) => {
+        let newOrdersArray = store.orders; // create a copy of the array to avoid modifying the original
         newOrdersArray.sort((a, b) => {
-            if ( Number(a.price) > Number(b.price)) {
-              return -1;
-            }
-            if (Number(a.price) < Number(b.price)) {
-              return 1;
-            }
-            return 0;
-          });
-          actions.updateOrders(newOrdersArray)
-          console.log(newOrdersArray)
-    }
+          let result = 0;
+          if (sortOrder === "desc") {
+            result = Number(b[param]) - Number(a[param]);
+          } else {
+            result = Number(a[param]) - Number(b[param]);
+          }
+          return result;
+        });
+        setSortOrder(sortOrder === "desc" ? "asc" : "desc"); // toggle the sort order
+        actions.updateOrders(newOrdersArray);
+      };
 
-    
+      const filterByString = (param) => {
+        let newOrdersArray = store.orders; // create a copy of the array to avoid modifying the original
+        newOrdersArray.sort((a, b) => {
+          let result = 0;
+          if (sortOrder === "desc") {
+            result = b[param] - a[param];
+          } else {
+            result = a[param] - b[param];
+          }
+          return result;
+        });
+        setSortOrder(sortOrder === "desc" ? "asc" : "desc"); // toggle the sort order
+        actions.updateOrders(newOrdersArray);
+      };
+
+      const filterByPlant = (param) => {
+        let newOrdersArray = store.orders; // create a copy of the array to avoid modifying the original
+        newOrdersArray.sort((a, b) => {
+          let result = 0;
+          if (sortOrder === "desc") {
+            result = b.plant.name - a.plant.name;
+          } else {
+            result = a.plant.name - b.plant.name;
+          }
+          return result;
+        });
+        setSortOrder(sortOrder === "desc" ? "asc" : "desc"); // toggle the sort order
+        actions.updateOrders(newOrdersArray);
+      };
     
     return<>
         <div className="table-responsive responsive-font">
-            <button onClick={()=> console.log(store.orders)}> Test Fetch Test FetchTest FetchTest FetchTest FetchTest FetchTest Fetchv</button>
+            <button onClick={()=>console.log(store.orders)}> Store Orders</button>
             <table className="table">
                 <thead>
                     <tr>
-                        <th> ID</th>
-                        <th> Nombre del Cliente</th>
-                        <th> Numero de Cliente</th>
-                        <th> Tipo de Planta</th>
-                        <th> Tamaño de Planta</th>
-                        <th onClick={()=>filterBy()}> Precio</th>
-                        <th> Master Asignado</th>
-                        <th> Fecha de Entrega</th>
-                        <th> Estado actual </th>
-                        <th> Comentarios Adicionales</th>
+                        <th className="clickeable" onClick={()=>filterByNumber("id")}> ID <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+                        <th className="clickeable" onClick={()=>filterByString("customer_name")}> Nombre del Cliente <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+                        <th className="clickeable" onClick={()=>filterByNumber("customer_number")}> Numero de Cliente <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+                        <th className="clickeable" onClick={()=>filterByPlant()}> Tipo de Planta <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+                        <th className="clickeable" onClick={()=>filterByNumber("plant_size")}> Tamaño de Planta <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+                        <th className="clickeable" onClick={()=>filterByNumber("price")}> Precio <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+                        <th className="clickeable" onClick={()=>filterByString("status")}> Master Asignado <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+                        <th className="clickeable"> Fecha de Entrega <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+                        <th className="clickeable" onClick={()=>filterByString("status")}> Estado actual <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+                        <th className="clickeable"> Comentarios Adicionales <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -82,11 +111,10 @@ export default function GetOrders(){
                             <td> {order.id}</td>
                             <td> {order.customer_name}</td>
                             <td> {order.customer_number}</td>
-                            <td> {order.plant_type}</td>
+                            <td> {order.plant.name}</td>
                             <td> {order.plant_size}</td>
                             <td> {order.price}</td>
-                            {/* Acá tuve que comentar order.master.name de momento */}
-                            <td> MASTER</td>
+                            <td> {order.master.name}</td>
                             <td>{new Date(order.delivery_date).toLocaleDateString('es', { year: 'numeric', month: 'short', day: 'numeric' })}</td>
                             <td> {order.status} 
                                 <input type="checkbox" onClick={()=>handleClickRow(order.id)}/>
