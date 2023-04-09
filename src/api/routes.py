@@ -112,6 +112,7 @@ def add_master():
 @api.route("/add/order", methods=["POST"])
 def add_order():
     plant_id= request.json.get("plant_id", None)
+    master_id= request.json.get("master_id", None)
     size = request.json.get("size", None)
     name = request.json.get("name", None)
     phone = request.json.get("phone", None)
@@ -134,7 +135,7 @@ def add_order():
     elif size == 40:
         plant.size40 -= 1
     
-    new_order= Order( plant_id=plant_id , plant_size =size, customer_name=name, customer_number=phone, delivery_date=delivery_date,price=price,date=date, status="Pendiente")
+    new_order= Order( plant_id=plant_id, master_id=master_id, plant_size =size, customer_name=name, customer_number=phone, delivery_date=delivery_date,price=price,date=date, status="Pendiente")
     
     db.session.add(new_order)    
     db.session.commit()
@@ -239,6 +240,13 @@ def get_model_types():
     models = Shoe.query.all()
     models_list = [model.serialize() for model in models]
     return jsonify(models_list), 200
+
+
+@api.route("/get/masters", methods=["GET"])
+def get_masters():
+    masters = Master.query.all()
+    masters_list = [master.serialize() for master in masters]
+    return jsonify(masters_list), 200
 
 @api.route("/get/transaction/plants", methods=["GET"])
 def get_transaction_plants():

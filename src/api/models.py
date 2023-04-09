@@ -121,6 +121,7 @@ class Order(db.Model):
         return {
             "id": self.id,
             "plant": Plants.query.get(self.plant_id).serialize(),
+            "master": Master.query.get(self.master_id).serialize(),
             "plant_size": self.plant_size,
             "customer_name": self.customer_name,
             "customer_number": self.customer_number,
