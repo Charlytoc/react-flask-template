@@ -26,8 +26,9 @@ export default function AddTransaction(){
     
     
     return<>
-    
-        <h1 className="text-color container  d-flex justify-content-center">Nueva Transacción</h1>
+        <div className="simple-form">
+
+        <h1 className="bold">Nueva Transacción</h1>
         <div className=" d-flex justify-content-center container">
             {/* <button onClick={()=>{console.log();}}>hola</button> */}
         <form className="row w-50 p-3 ">
@@ -47,12 +48,10 @@ export default function AddTransaction(){
         <div style={{position: "relative"}}>
         {showMessage && <div className="popover">Transacción Exitosa</div>}
         </div>
-
-        
-
     </form>
-    
     </div>
-   
+        </div>
     </>
 }
+   
+    

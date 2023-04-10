@@ -61,7 +61,6 @@ td{
     box-shadow: 2px 2px 5px rgb(156, 156, 156);
     border-radius: 7px;
     padding: 8px;
-    /* background-color: blueviolet; */
 }
 .options-component {
     background-color: var(--color-two);
@@ -129,6 +128,7 @@ td{
     .standard-form {
         max-width: 600px;
         margin: 0 auto !important;
+       
     }
     #admin-page-container {
         display: grid;
@@ -153,6 +153,7 @@ td{
         border-bottom: 1px solid var(--color-one);
         padding: 5px;
         margin: 0;
+        
     }
     .options-component > div > button {
         border: 0;
@@ -160,7 +161,9 @@ td{
         color: white;
         border-bottom: 1px solid var(--color-three);
         padding: 3px;
+        
     }
+   
 }
 
 
