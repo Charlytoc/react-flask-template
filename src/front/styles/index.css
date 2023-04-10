@@ -12,14 +12,18 @@ td{
     display: grid;
     grid-template-columns: repeat(8, 1fr); 
     gap: 0;
-    padding: 5px;
     border-radius: 3px;
+    margin-top: 0;
+}
+.table-container:last-child {
+    border-bottom: 1px solid black;
 }
 .table-container > div {
-    /* border-left: 1px solid white; */
+    
     font-weight: 700;
     text-align: center;
     padding: 9px;
+    
     
 }
 .border-left-dark > div:not(:first-child) {
@@ -163,6 +167,13 @@ td{
     }
 }
 
+
+.inventory-plant-name {
+    background-color: rgb(203, 203, 203);
+    padding: 4px;
+    text-align: center;
+    font-weight: bolder;
+}
 
 
 @media screen and (min-width: 1080px) { 
