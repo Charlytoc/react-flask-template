@@ -17,16 +17,6 @@ export default function GetPlants() {
 
 
 
-  const styles = {
-    tableHeader: {
-      fontWeight: 300,
-      fontSize: '2em',
-    },
-    tableHeaderColumn: {
-      fontSize: '1em',
-      padding: '0 0.5em',
-    },
-  };
   return (
     <>
       <section className="tables">
@@ -44,9 +34,8 @@ export default function GetPlants() {
       </div>
       {plants.map((item, index) => (
         <>
-        <div className="text-center mt-2">{item.name}</div>
-        <div className="table-container border-left-dark mt-1" key={index}>
-          
+        <div className="inventory-plant-name">{item.name}</div>
+        <div className="table-container border-left-dark" key={index}>
           <div>{item.size34}</div>
           <div>{item.size35}</div>
           <div>{item.size36}</div>
