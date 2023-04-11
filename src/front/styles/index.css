@@ -174,3 +174,10 @@ td{
     }
 
 }
+
+
+.button-transaction{
+    max-width: 500px;
+    max-height: 50px;
+    font-size: 15px !important;
+}

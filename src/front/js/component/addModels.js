@@ -21,7 +21,9 @@ export default function AddModels(){
   
     
     return<>
-        <div className="container">
+    <div className="simple-form">
+    <h1 className="bold">Agregar Un Nuevo Modelo</h1>
+        <div className="d-flex justify-content-center container">
             <form className="row w-50 p-3 ">
                 <input placeholder="Name" onChange={(e)=>{setModels({...models,name:e.target.value})}} value={models.name || ''}/>
                 <input placeholder="Size From" onChange={(e)=>{setModels({...models,size_from:e.target.value})}} value={models.size_from || ''}/>
@@ -29,12 +31,15 @@ export default function AddModels(){
                 <input placeholder="Category" onChange={(e)=>{setModels({...models,category:e.target.value})}} value={models.category || ''}/>
                 <input placeholder="Photo" onChange={(e)=>{setModels({...models,photo:e.target.value})}} value={models.photo || ''}/>
             </form>
+        </div>
             <div className="d-flex justify-content-center container">
-                <button onClick={()=>{handleSave()}}>Guardar</button>
+                <button onClick={()=>{handleSave()}} className="btn bg-pink">Guardar</button>
             { showMessage && <div className="popover">Tu modelo se agrego exitosamente!</div>}
             </div>
-        </div>
+        
             
+    </div>
+       
             
    
     </>
