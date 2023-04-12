@@ -110,7 +110,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				fetch(process.env.BACKEND_URL+"/api/get/plants")
 				.then(response => response.json())
-				.then(data => {setStore({plants:data});console.log(store.plants);})
+				.then(data => {setStore({plants:data})})
 			},
 			
 			addMaster: async(master)=>{

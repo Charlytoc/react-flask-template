@@ -15,13 +15,13 @@ export default function GetOrders(){
     const fetchModels= ()=>{
         fetch(process.env.BACKEND_URL+"/api/get/model/types")
         .then(response => response.json())
-        .then(data => {setModels(data);console.log(data);})
+        .then(data => {setModels(data)})
 
     }
 
     return<>
         <div className="">
-            <table className="table">
+            <table className="table bg-pink">
                 <thead>
                     <tr>
                         <th> ID</th>
