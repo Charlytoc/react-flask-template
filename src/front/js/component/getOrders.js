@@ -40,6 +40,9 @@ export default function GetOrders(){
     // }, [store.orders])
     
 
+
+    // THIS WILL FILTER BY NUMERICAL ORDER
+
     const filterByNumber = (param) => {
         let newOrdersArray = store.orders; // create a copy of the array to avoid modifying the original
         newOrdersArray.sort((a, b) => {
@@ -55,14 +58,15 @@ export default function GetOrders(){
         actions.updateOrders(newOrdersArray);
       };
 
+      // THIS WILL FILTER BY ALPHABETICALO ORDER
       const filterByString = (param) => {
         let newOrdersArray = store.orders; // create a copy of the array to avoid modifying the original
         newOrdersArray.sort((a, b) => {
           let result = 0;
           if (sortOrder === "desc") {
-            result = b[param] - a[param];
+            result =  a[param].localeCompare(b[param]);;
           } else {
-            result = a[param] - b[param];
+            result =  b[param].localeCompare(a[param]);;
           }
           return result;
         });
@@ -70,14 +74,31 @@ export default function GetOrders(){
         actions.updateOrders(newOrdersArray);
       };
 
-      const filterByPlant = (param) => {
-        let newOrdersArray = store.orders; // create a copy of the array to avoid modifying the original
+      // THIS WILL FILTER BY DATE 
+      const filterByDate = (param) => {
+        let newOrdersArray = store.orders.slice(); // create a copy of the array to avoid modifying the original
         newOrdersArray.sort((a, b) => {
           let result = 0;
           if (sortOrder === "desc") {
-            result = b.plant.name - a.plant.name;
+            result = new Date(b[param]) - new Date(a[param]);
           } else {
-            result = a.plant.name - b.plant.name;
+            result = new Date(a[param]) - new Date(b[param]);
+          }
+          return result;
+        });
+        setSortOrder(sortOrder === "desc" ? "asc" : "desc"); // toggle the sort order
+        actions.updateOrders(newOrdersArray);
+      };
+
+      // THIS WILL FILTER BY PLANT , ACCESING THE OBJECT 
+      const filterByPlantOrMaster = (param) => {
+        let newOrdersArray = [...store.orders]; // create a copy of the array to avoid modifying the original
+        newOrdersArray.sort((a, b) => {
+          let result = 0;
+          if (sortOrder === "desc") {
+            result = b[param].name.localeCompare(a[param].name);
+          } else {
+            result = a[param].name.localeCompare(b[param].name);
           }
           return result;
         });
@@ -92,15 +113,19 @@ export default function GetOrders(){
                 <thead>
                     <tr>
                         <th className="clickeable" onClick={()=>filterByNumber("id")}> ID <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+
                         <th className="clickeable" onClick={()=>filterByString("customer_name")}> Nombre del Cliente <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+
                         <th className="clickeable" onClick={()=>filterByNumber("customer_number")}> Numero de Cliente <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
-                        <th className="clickeable" onClick={()=>filterByPlant()}> Tipo de Planta <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+                        <th className="clickeable" onClick={()=>filterByPlantOrMaster("plant")}> Tipo de Planta <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
                         <th className="clickeable" onClick={()=>filterByNumber("plant_size")}> Tamaño de Planta <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
                         <th className="clickeable" onClick={()=>filterByNumber("price")}> Precio <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
-                        <th className="clickeable" onClick={()=>filterByString("status")}> Master Asignado <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
-                        <th className="clickeable"> Fecha de Entrega <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+                        <th className="clickeable" onClick={()=>filterByPlantOrMaster("master")}> Master Asignado <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+                        <th className="clickeable" onClick={()=> filterByDate("delivery_date")}> Fecha de Entrega <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+
                         <th className="clickeable" onClick={()=>filterByString("status")}> Estado actual <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
-                        <th className="clickeable"> Comentarios Adicionales <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
+
+                        <th className="clickeable" > Comentarios Adicionales <span>{sortOrder === "desc" ? "🔽" : "🔼"}</span></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -22,6 +22,40 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+# When you visit this endpoint it will create a test dataset
+# Dentro de api/route tenemos 2 argumentos, el primero , el endpoint que queremos expoenr
+# el segundo los metodos que se van a aceptar en ese endpoint
+# Investigar cuales son los metodos HTTP -> Post Get Put Delete 
+@api.route('/', methods=['GET'])
+def create_dataset():
+    print ("Succesfully Created")
+    response_body = {
+        "message": "Succesfully Created"
+    }
+
+    new_plant0 = Plants(name="Lola", size34=1,size35=34, size36=4, size37=0, size38=5, size39=7, size40=2, size41=0)
+    new_plant1 = Plants(name="Doris", size34=0,size35=2, size36=6, size37=2, size38=0, size39=3, size40=4, size41=2)
+    new_plant2 = Plants(name="Roselena", size34=3,size35=10, size36=5, size37=3, size38=7, size39=5, size40=2, size41=3)
+    new_plant3 = Plants(name="Papa Johns", size34=5,size35=1, size36=3, size37=5, size38=9, size39=0, size40=2, size41=5)
+
+    new_master0= Master(name="Paul" , phone="+506 62502302", alias= "El Zapatero Maestro")
+    new_master1= Master(name="Papa Jones" , phone="+1 7076250593", alias= "El papa de Johns el pizzero")
+    new_master2= Master(name="Mama Joans" , phone="+1 290 95 95", alias= "Cuando tengas hambre el numero en tu cabeza!")
+    new_master3= Master(name="Charly TOC TOC" , phone="+44 123456789", alias= "Los dias libres son para loosers")
+
+    db.session.add(new_plant0)    
+    db.session.add(new_plant1)    
+    db.session.add(new_plant2)    
+    db.session.add(new_plant3)
+
+    db.session.add(new_master0)    
+    db.session.add(new_master1)    
+    db.session.add(new_master2)    
+    db.session.add(new_master3)
+    db.session.commit()
+
+    return jsonify(response_body), 200
+
 
 @api.route("/signup", methods=["POST"])
 def signup():
