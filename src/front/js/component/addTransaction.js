@@ -1,12 +1,15 @@
-import React, { useContext,useState } from "react";
+import React, { useContext,useEffect,useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Action } from "history";
+import axios from 'axios';
 
 export default function AddTransaction(){
     const[transaction,setTransaction]= useState({})
     const[showMessage,setShowMessage]= useState(false)
     const{store,actions}= useContext(Context)
+    const[plantTypes,setPlantTypes]= useState([])
+    const[master,setMaster]= useState([])
     const subtractPlants= (e)=>{
         e.preventDefault()
         setTransaction({
@@ -23,13 +26,48 @@ export default function AddTransaction(){
         actions.addTransaction(transaction,setShowMessage)
         setTransaction({})
     }
-    
+    const fetchPlants = ()=>{
+        axios.get(process.env.BACKEND_URL+"/api/get/plant/types")
+        .then((response) => {setPlantTypes(response.data);console.log( response.data[0]);})
+        .catch((error) => {console.log(error)});
+       }
+    const fetchMasters = ()=>{
+        axios.get(process.env.BACKEND_URL+"/api/get/masters")
+        .then((response) => {setMaster(response.data)})
+        .catch((error) => {console.log(error)});
+       }
+
+    useEffect(()=>{
+        fetchPlants();
+        fetchMasters()
+
+    },[])
     
     return<>
         <div className="simple-form">
+            <h2 className="bold">Nueva Transacción</h2>
 
-        <h2 className="bold">Nueva Transacción</h2>
         <div className=" label-input-pairs">
+            <article>
+                <label>Tipo de Planta</label>
+                <select  name="Tipo de Planta"
+                    onChange={(e)=>{setTransaction({...transaction, plant_id: e.target.value})}}
+                    value={transaction.plant_id || ''}><option value={0}> Selecciona Una Planta </option>
+                    {plantTypes.map((plant) => (
+                    <option value={plant.id} key={plant.id}>
+                    {plant.name}
+                    </option> ))}</select>
+            </article>
+            <article>
+                <label>Maestro</label>
+                <select  name="Maestro"
+                    onChange={(e)=>{setTransaction({...transaction, master_id: e.target.value})}}
+                    value={transaction.master_id || ''}><option value={0}> Selecciona Un Maestro </option>
+                    {master.map((master) => (
+                    <option value={master.id} key={master.id}>
+                    {master.name}
+                    </option> ))}</select>
+            </article>
             <article>
                 <label>Descripcion</label>
                 <input onChange={(e)=>{setTransaction({...transaction,description:e.target.value})}} value={transaction.description || ''} />
