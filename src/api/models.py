@@ -23,9 +23,9 @@ class User(db.Model):
 
 class Master(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), unique=False, nullable=False)
+    name = db.Column(db.String(120), unique=True, nullable=False)
     phone = db.Column(db.String(20), unique=False, nullable=True)
-    alias = db.Column(db.String(20), unique=False, nullable=True)
+    alias = db.Column(db.String(100), unique=False, nullable=True)
 
     transactions = db.relationship('PlantsTransactions', backref='master', lazy=True)
     orders = db.relationship('Order', backref='master', lazy=True)
@@ -68,7 +68,7 @@ class Shoe(db.Model):
 
 class Plants(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), unique=False, nullable=False)
+    name = db.Column(db.String(120), unique=True, nullable=False)
     size34 = db.Column(db.Integer, nullable=True)
     size35 = db.Column(db.Integer, nullable=True)
     size36 = db.Column(db.Integer, nullable=True)
