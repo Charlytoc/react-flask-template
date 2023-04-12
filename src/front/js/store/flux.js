@@ -113,7 +113,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(data => {setStore({plants:data})})
 			},
 			
-			addMaster: async(master)=>{
+			addMaster: async(master,message)=>{
 				fetch(process.env.BACKEND_URL+"/api/add/master", {
 					method: 'POST',
 					headers: {
@@ -127,7 +127,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.then(response => response.json())
 				.then(data => console.log(data))
-				// .catch(error => console.log(error,"este error viene del flux"));
+				.catch(error => console.log(error,"este error viene del flux"));
+				
 			},
 			
 			getOrders: async()=>{
