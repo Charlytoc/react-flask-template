@@ -2,9 +2,11 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // importar el hook
 
 export const SignUp = () => {
 	const { store, actions } = useContext(Context);
+    const navigate = useNavigate() // instanciar el hook
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,6 +24,7 @@ export const SignUp = () => {
       console.log(store,actions);
       actions.fetchSignup(email, password,setShowMessage)
       setEmail("")
+      navigate("/login") // usar el hook
     }
     
 

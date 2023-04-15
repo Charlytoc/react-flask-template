@@ -27,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						showMessage(false)
 					},4000)})
 
-					// .catch(error => console.log(error,"este error viene del flux"));
+					.catch(error => console.log(error,"este error viene del flux"));
 			},
 			
 			 fetchLogin : (email,password)=>{
@@ -89,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(data => {setStore({plants:data});console.log(store.plants);})
 			},
 
-			addMaster: async(master)=>{
+			addMaster: async(master,setMessage)=>{
 				fetch(process.env.BACKEND_URL+"/api/add/master", {
 					method: 'POST',
 					headers: {

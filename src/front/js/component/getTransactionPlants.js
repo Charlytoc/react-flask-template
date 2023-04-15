@@ -20,9 +20,9 @@ export default function GetTransactionPlants(){
    
     return<>
         <div className="">
-            <table className="table bg-pink">
+            <table className="table">
                 <thead>
-                    <tr>
+                    <tr className=" bg-pink">
                         <th> Descripcion</th>
                         <th> Nombre De La Planta</th>
                         <th>Talla 34 </th>

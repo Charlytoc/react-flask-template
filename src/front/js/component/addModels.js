@@ -23,14 +23,29 @@ export default function AddModels(){
     return<>
     <div className="simple-form">
     <h1 className="bold">Agregar Un Nuevo Modelo</h1>
-        <div className="d-flex justify-content-center container">
-            <form className="row w-50 p-3 ">
-                <input placeholder="Name" onChange={(e)=>{setModels({...models,name:e.target.value})}} value={models.name || ''}/>
-                <input placeholder="Size From" onChange={(e)=>{setModels({...models,size_from:e.target.value})}} value={models.size_from || ''}/>
-                <input placeholder="Size To" onChange={(e)=>{setModels({...models,size_to:e.target.value})}} value={models.size_to || ''}/>
-                <input placeholder="Category" onChange={(e)=>{setModels({...models,category:e.target.value})}} value={models.category || ''}/>
-                <input placeholder="Photo" onChange={(e)=>{setModels({...models,photo:e.target.value})}} value={models.photo || ''}/>
-            </form>
+        <div className="label-input-pairs">
+            <article>
+                <label>Nombre</label>
+                <input onChange={(e)=>{setModels({...models,name:e.target.value})}} value={models.name || ''}/>
+            </article>
+            <article>
+                <label>Talla Desde</label>
+                <input onChange={(e)=>{setModels({...models,size_from:e.target.value})}} value={models.size_from || ''}/>
+            </article>
+            <article>
+                <label>Talla Hasta</label>
+                <input onChange={(e)=>{setModels({...models,size_to:e.target.value})}} value={models.size_to || ''}/>
+            </article>
+            <article>
+                <label>Categoria</label>
+                <input  onChange={(e)=>{setModels({...models,category:e.target.value})}} value={models.category || ''}/>
+            </article>
+            <article>
+                <label>Foto</label>
+                <input onChange={(e)=>{setModels({...models,photo:e.target.value})}} value={models.photo || ''}/>
+           
+            </article>
+         
         </div>
             <div className="d-flex justify-content-center container">
                 <button onClick={()=>{handleSave()}} className="btn bg-pink">Guardar</button>

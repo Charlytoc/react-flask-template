@@ -48,6 +48,7 @@ export default function AddOrder(){
     return<>
     
         <div className="simple-form">
+        {showMessage && <div className="popover">Pedido agregado exitosamente! </div>}
             <h2 className="bold">Agrega un nuevo pedido</h2>
                 <div className="label-input-pairs">
                     <article>
@@ -100,9 +101,7 @@ export default function AddOrder(){
                 </div>
             <button className="button-dark" onClick={()=>{handleSave()}}>Guardar</button>
 
-        <div  style={{position:"relative"}}>
-            {showMessage && <div className="popover">Pedido agregado exitosamente! </div>}
-        </div>
+        
         </div>
 
     </>
