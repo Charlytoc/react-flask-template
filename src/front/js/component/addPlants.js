@@ -48,49 +48,47 @@ export default function AddPlants(){
     
     return<>
     <div className="simple-form">
+               {showMessage && <div className="popover">Planta agregada existosamente!</div>}
+                {showError && <div className="popover">Ya agregaste esta planta previamente</div>}
         <h2 className="bold">Agrega un nuevo tipo de planta</h2>
             <div className="label-input-pairs">
 <article>
   <label>Nombre de la planta</label>
-  <input placeholder="Nombre de la planta" className="" onChange={(e) => {handleNameChange(e)}} value={plant.name}/>
+  <input  className="" onChange={(e) => {handleNameChange(e)}} value={plant.name}/>
 </article>
 <article>
   <label>Talla 34</label>
-  <input placeholder="Talla 34" onChange={(e) => setPlant({...plant, size34: parseInt(e.target.value)})} value={plant.size34}/>
+  <input onChange={(e) => setPlant({...plant, size34:e.target.value})} value={plant.size34} type="number"/>
 </article>
 <article>
   <label>Talla 35</label>
-  <input placeholder="Talla 35" onChange={(e) => setPlant({...plant, size35: parseInt(e.target.value)})} value={plant.size35}/>
+  <input  onChange={(e) => setPlant({...plant, size35: e.target.value})} value={plant.size35} type="number"/>
 </article>
 <article>
   <label>Talla 36</label>
-  <input placeholder="Talla 36" onChange={(e) => setPlant({...plant, size36: parseInt(e.target.value)})} value={plant.size36}/>
+  <input  onChange={(e) => setPlant({...plant, size36:e.target.value})} value={plant.size36} type="number"/>
 </article>
 <article>
   <label>Talla 37</label>
-  <input placeholder="Talla 37" onChange={(e) => setPlant({...plant, size37: parseInt(e.target.value)})} value={plant.size37}/>
+  <input  onChange={(e) => setPlant({...plant, size37:e.target.value})} value={plant.size37} type="number"/>
 </article>
 <article>
   <label>Talla 38</label>
-  <input placeholder="Talla 38" onChange={(e) => setPlant({...plant, size38: parseInt(e.target.value)})} value={plant.size38}/>
+  <input  onChange={(e) => setPlant({...plant, size38: e.target.value})} value={plant.size38} type="number"/>
 </article>
 <article>
   <label>Talla 39</label>
-  <input placeholder="Talla 39" onChange={(e) => setPlant({...plant, size39: parseInt(e.target.value)})} value={plant.size39}/>
+  <input  onChange={(e) => setPlant({...plant, size39: e.target.value})} value={plant.size39} type="number"/>
 </article>
 <article>
   <label>Talla 40</label>
-  <input placeholder="Talla 40" onChange={(e) => setPlant({...plant, size40: parseInt(e.target.value)})} value={plant.size40}/>
+  <input  onChange={(e) => setPlant({...plant, size40: e.target.value})} value={plant.size40} type="number"/>
 </article>
 
             </div>
 
             <button className="btn bg-pink" onClick={()=>{handleSave()}}>Guardar</button>
-            <div style={{position: "relative"}}>
-                {showMessage && <div className="popover">Planta agregada existosamente!</div>}
-                {showError && <div className="popover">Ya agregaste esta planta previamente</div>}
-            </div>
-
+            
     </div>
      </>
 }

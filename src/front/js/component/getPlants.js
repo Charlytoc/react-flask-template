@@ -33,9 +33,10 @@ export default function GetPlants() {
         <div>41</div>
       </div>
       {plants.map((item, index) => (
-        <>
+      
+        <div key = {index}>
         <div className="inventory-plant-name">{item.name}</div>
-        <div className="table-container border-left-dark" key={index}>
+        <div className="table-container border-left-dark">
           <div>{item.size34}</div>
           <div>{item.size35}</div>
           <div>{item.size36}</div>
@@ -45,7 +46,9 @@ export default function GetPlants() {
           <div>{item.size40}</div>
           <div>{item.size41}</div>
         </div>
-        </>
+        </div>
+        
+     
 ))}
 
       </section>

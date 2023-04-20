@@ -107,8 +107,8 @@ export default function AddTransaction(){
         </div>
        
         <div className="d-flex justify-content-center mt-3">
-            <button className="btn bg-pink me-3 button-transaction" onClick={(e)=>{e.preventDefault();actions.addTransaction(transaction,setShowMessage); setTransaction({})}}>Sumar Plantas Al Inventario<span className="ms-2"><i class="fa-solid fa-plus"></i></span></button>
-            <button className="btn bg-pink button-transaction" onClick={(e)=>{subtractPlants(e)}}>Entregar Plantas A Un Maestro <span className="ms-2"><i class="fa-solid fa-minus"></i></span></button>
+            <button className="btn bg-pink me-3 button-transaction" onClick={(e)=>{e.preventDefault();actions.addTransaction(transaction,setShowMessage); setTransaction({})}}>Sumar Plantas Al Inventario<span className="ms-2"><i className="fa-solid fa-plus"></i></span></button>
+            <button className="btn bg-pink button-transaction" onClick={(e)=>{subtractPlants(e)}}>Entregar Plantas A Un Maestro <span className="ms-2"><i className="fa-solid fa-minus"></i></span></button>
         <div style={{position: "relative"}}>
         {showMessage && <div className="popover">Transacción Exitosa</div>}
         </div>

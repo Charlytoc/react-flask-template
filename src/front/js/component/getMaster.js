@@ -3,19 +3,19 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Action } from "history";
 
-export default function GetOrders(){
+export default function GetMaster(){
     
     const{store,actions}= useContext(Context)
-    const [models, setModels] = useState([])
+    const [master, setMaster] = useState([])
 
    useEffect( ()=>{
-        fetchModels()
+        fetchMaster()
     },[])
 
-    const fetchModels= ()=>{
-        fetch(process.env.BACKEND_URL+"/api/get/model/types")
+    const fetchMaster= ()=>{
+        fetch(process.env.BACKEND_URL+"/api/get/masters")
         .then(response => response.json())
-        .then(data => {setModels(data)})
+        .then(data =>{setMaster(data)})
 
     }
 
@@ -24,27 +24,22 @@ export default function GetOrders(){
             <table className="table">
                 <thead>
                     <tr className="bg-pink">
-                        <th> ID</th>
                         <th> Nombre</th>
-                        <th>Desde</th>
-                        <th> Hasta</th>
-                        <th> Categoria</th>
-                        <th> Fotografia</th>
+                        <th>Telefono</th>
+                        <th> Alias</th>
                         
                         
                     </tr>
                 </thead>
                    
                 <tbody >
-                {models.map((item,index)=>{
+                {master.map((item,index)=>{
                     return  <tr key={index}>
 
-                    <td>{item.id}</td>
                     <td>{item.name}</td>
-                    <td>{item.size_from}</td>
-                    <td>{item.size_to}</td>
-                    <td>{item.category}</td>
-                    <td>{item.photo}</td>
+                    <td>{item.phone}</td>
+                    <td>{item.alias}</td>
+                    
                    </tr>
                 })}       
                    

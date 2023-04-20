@@ -19,13 +19,14 @@ export default function AddMaster(){
           }
         actions.addMaster(master,setMessage);
         setMaster({})
+        
 
     }
     
     
     return<>
     <div className="simple-form">
-    {/* <button onClick={()=>{console.log(master);}}>hola</button> */}
+    {message && <div className="popover">Maestro agregado exitosamente</div>}
     <h1 className="container  d-flex justify-content-center bold">Agregar Maestro</h1>
         <div className=" label-input-pairs">
             <article>
@@ -45,7 +46,7 @@ export default function AddMaster(){
             <button className=" button-dark" onClick={()=>{handleSave();setMessage(true);setTimeout(()=>{
 						setMessage(false)
 					},4000)}}>Guardar</button>
-            {message && <div className="popover">Maestro agregado exitosamente</div>}
+            
         </div>
         
 

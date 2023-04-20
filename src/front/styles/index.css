@@ -55,6 +55,7 @@ td{
 }
 
 .simple-form {
+    position: relative;
     width: 90%;
     display: flex;
     height: fit-content;

@@ -11,6 +11,7 @@ import GetModels from "./getModels";
 import GetTransactionPlants from "./getTransactionPlants";
 import AddTransaction from "./addTransaction";
 import AddMaster from "./addMaster";
+import GetMaster from "./getMaster";
 
 export default function Options({setComponent}) {
 
@@ -33,7 +34,7 @@ export default function Options({setComponent}) {
             <button onClick={()=>{setComponent(<GetModels/>)}}>Ver inventario de modelos</button>
             <h2>Maestros</h2>
             <button onClick={()=>{setComponent(<AddMaster/>)}}>Agregar nuevo maestro</button>
-            <button>Ver catálogo de maestros</button>
+            <button onClick={()=>{setComponent(<GetMaster/>)}}>Ver maestros registrados</button>
           </div>
         </section>
       
