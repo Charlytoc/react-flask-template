@@ -48,8 +48,8 @@ class Shoe(db.Model):
     size_to = db.Column(db.Integer)
     # Check documentation for choices field
     # category = db.Column(db.String, nullable=False, server_default='Magnolia', choices=['Magnolia', 'Taco'])
-    category = db.Column(db.String, nullable=False)
     photo = db.Column(db.String, nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=True)
 
 
     def __repr__(self):
@@ -61,7 +61,7 @@ class Shoe(db.Model):
             "name": self.name,
             "size_from": self.size_from,
             "size_to": self.size_to,
-            "category": self.category,
+            "category": Category.query.filter_by(id= self.category_id).first().serialize(),
             "photo": self.photo
         }
         
@@ -180,4 +180,21 @@ class PlantsTransactions(db.Model):
             "size39": self.size39,
             "size40": self.size40,
             "size41": self.size41,
+        }
+
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), unique= True , nullable=False)
+    subcategory = db.Column(db.String(200), unique=False, nullable=True)
+    shoe = db.relationship('Shoe', backref='category', lazy=True)
+
+    def __repr__(self):
+        return f'<Category {self.name}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "subcategory": self.subcategory
+          
         }

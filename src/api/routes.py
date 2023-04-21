@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User,Plants,Master,Order,Shoe,PlantsTransactions
+from api.models import db, User,Plants,Master,Order,Shoe,PlantsTransactions,Category
 from api.utils import generate_sitemap, APIException
 
 from flask_jwt_extended import create_access_token
@@ -287,3 +287,9 @@ def get_transaction_plants():
     transactions = PlantsTransactions.query.all()
     transaction_list = [transaction.serialize() for transaction in transactions]
     return jsonify(transaction_list), 200
+
+@api.route("/get/shoes", methods=["GET"])
+def get_shoes():
+    shoes = Shoe.query.all()
+    shoes_list = [shoe.serialize() for shoe in shoes]
+    return jsonify(shoes_list), 200
