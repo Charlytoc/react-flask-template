@@ -198,19 +198,25 @@ td{
     width: 300px;
     height: 350px;
     margin-top: 10px;
-    margin-inline-end: 3px;
     text-align: center;
-    border: 1px solid red;
+    border: 1px solid rgba(145, 142, 142, 0.867);
     border-radius: 5px;
-    position: relative;
+    box-shadow: 5px 5px 10px rgb(172, 168, 168);
    
  
 
 }
+.shoe-card:hover{
+    scale: 1.01;
+    transition: all 500ms;
 
-.shoe-card>div:first-child{
-    height: 250px;
-    background-color: aqua;
+}
+
+.first-div{
+    height: 80%;
+    position: relative !important;
+    width: 100%;
+    display: block;
 }
 
 .shoe-card>button{
@@ -222,15 +228,22 @@ td{
 .shoe-card>div>img{
    width: 100%;
    height: 100%;
+   object-fit: cover;
+   position: absolute;
+   top: 0;
+   left: 0;
 }
 .shoe-card>h2{
    width: 100%;
-   height: 50px;
+   height:10%;
+   margin-bottom: 0;
 }
-.card{
+.grid-catalogue{
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
+    gap:10px;
+    padding: 20px;
 }
 
 
@@ -240,12 +253,13 @@ td{
     content: " > ";
   }
 .next-to-heart{
-    height: 65px;
+    height: 10%;
     width: 100%;
     padding: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 0;
  
 }
 .heart{
@@ -254,4 +268,53 @@ td{
     color: red;
 }
 
+/* @keyframes upscale {
+    0%{
+        scale: 1;}
+    100%{
+        scale: 1.05;
+    }
+} */
+.filtro{
+
+   width: 300px;
+   height: 80vh;
+   border-radius: 10px;
+   padding: 10px;
+   text-align: center;
+   border:1px solid rgba(207, 202, 202, 0.429);
+   position: fixed;
+   z-index: 3;
+   background-color: white;
+   left: 20px;
+   top:15%
+}
+
+.filtro>h2{
+font-weight: bold;
+
+}
+
+.filtro>span{
+    display: block;
+    font-size: 20px;
+}
+
+.filtro>button{
+    background-color: var(--color-one);
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 0;
+}
+.filter-button{
+   position: fixed;
+   z-index: 3; 
+   left: 20px;
+   border: none;
+   background-color: white;
+   font-weight: bold;
+   border-radius: 50%;
+   padding: 5px;
+}
 
