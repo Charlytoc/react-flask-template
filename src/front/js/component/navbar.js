@@ -11,6 +11,8 @@ export const Navbar = () => {
       <nav className="navbar">
       <div>
       <Link to= "/"><h1 className="logo">Liz Shoes <i className="fa-brands fa-shopify"></i></h1></Link>
+      
+     
       </div>
         {store.isAuthenticated ? <AuthWidget /> : <SignupLoginComponent />}
       </nav>
@@ -41,12 +43,12 @@ const AuthWidget = () => {
   const {store,actions}=useContext(Context);
   return (
     <>
-    <button>Hello</button>
       <div className="menu-button">
+      <i className="fa-solid fa-cart-shopping button-dark me-1"></i>
       <i onClick={()=> setShowDrop(!showDrop)} className="fa-solid fa-bars button-dark"></i>
       {showDrop && <div className="drop-menu">
         <Link to="/admin" onClick={()=>setShowDrop(false)}>Ver panel de administrador</Link>
-        <Link to="/" onClick={()=>setShowDrop(false)}>Ver catálogo</Link>
+        <Link to="/catalogue" onClick={()=>setShowDrop(false)}>Ver catálogo</Link>
         <Link to="/" onClick={()=>{actions.logOut()}}>Logout</Link>
       </div>}
       </div>
