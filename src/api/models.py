@@ -49,6 +49,7 @@ class Shoe(db.Model):
     # Check documentation for choices field
     # category = db.Column(db.String, nullable=False, server_default='Magnolia', choices=['Magnolia', 'Taco'])
     photo = db.Column(db.String, nullable=False)
+    price = db.Column(db.String, nullable=True)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=True)
 
 
@@ -62,7 +63,8 @@ class Shoe(db.Model):
             "size_from": self.size_from,
             "size_to": self.size_to,
             "category": Category.query.filter_by(id= self.category_id).first().serialize(),
-            "photo": self.photo
+            "photo": self.photo,
+            "price": self.price
         }
         
 

@@ -82,6 +82,7 @@ button > a:hover {
    right: 0;
    padding: 3px;
    background-color: var(--color-three);
+   z-index: 2;
 }
 .drop-menu > a {
     background-color: white;
