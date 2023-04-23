@@ -18,10 +18,12 @@ export const Catalogue= () => {
 
 	},[])
 
+	const handleFilter=(categoryName)=>setShoes((prev)=>prev.filter((item)=>item.category.name===categoryName))
+
 	return (
 		<>
-		{showFilter && <FilterCategories/>}
-		<button onClick={()=>{setShowFilter(!showFilter)}} className="filter-button">Filter</button>
+		{showFilter && <FilterCategories filter={handleFilter}/>}
+		<button onClick={()=>{setShowFilter(!showFilter);console.log(shoes)}} className="filter-button">Filter</button>
 		<section className="grid-catalogue">
 		{shoes.map((item,index)=>{
 			return	<ShoeCard name={item.name} imageUrl={item.photo} category={item.category.name} sizeFrom={item.size_from}
@@ -58,11 +60,11 @@ function ShoeCard ({name, imageUrl,category,sizeFrom, sizeTo}) {
 	</>
 }
 
-function FilterCategories(){
-	return (<div className="filtro">
+function FilterCategories({filter}){
+	return (<div className="filtro" >
 				<h2>Filtros</h2>
 				<span>Categorías</span>
-				<button>Magnolias</button>
+				<button onClick={()=>{filter("magnolia")}}>Magnolias</button>
 				<button>Colegiales</button>
 				<button>Ortopedicos</button>
 				<button>Tacos</button>
