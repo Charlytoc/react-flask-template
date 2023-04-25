@@ -318,3 +318,73 @@ font-weight: bold;
    padding: 5px;
 }
 
+.div-landing-page{
+height: 100%;
+margin:0;
+font-size: 16px;
+font-family:"Lato", sans-serif;
+font-weight: 400;
+line-height: 1.8em;
+color :#666;
+
+}
+
+.landing-image-1{
+
+    background-image:url('../img/variados.jpg');
+    min-height: 500px;
+
+}
+.landing-image-1, .landing-image-2, .landing-image-3{
+position: relative;
+opacity:0.70;
+background-position:center;
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+
+}
+.landing-image-2{
+
+    background-image:url('./../img/how-to.png');
+    min-height: 400px;
+}
+.landing-image-3{
+
+    background-image:url('./../img/hombre.jpg');
+    min-height: 400px;
+}
+
+.section{
+    text-align: center;
+    padding: 50px 80px;
+    background-color: rgb(248, 206, 213);
+    color:#666
+
+}
+
+.ptext{
+    position: absolute;
+    top:50%;
+    left: 40%;
+    width: 100px;
+    text-align: center;
+    font-size: 27px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+   
+
+}
+.ptext .border{
+background-color: transparent;
+color: white;
+display: inline;
+}
+
+@media(max-width: 568){
+    .landing-image-1, .landing-image-2, .landing-image-3{
+        background-attachment:scroll ;
+    }   
+}
+
+
