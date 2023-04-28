@@ -12,6 +12,7 @@ import GetTransactionPlants from "./getTransactionPlants";
 import AddTransaction from "./addTransaction";
 import AddMaster from "./addMaster";
 import GetMaster from "./getMaster";
+import GetPendingOrders from "./getPendingOrders";
 
 export default function Options({setComponent}) {
 
@@ -21,7 +22,7 @@ export default function Options({setComponent}) {
           <div>
             <h2>Pedidos</h2>
             <button onClick={()=>setComponent(<AddOrder />)} >Agregar nuevo pedido</button>
-            <button>Ver pedidos pendientes</button>
+            <button onClick={()=>setComponent(<GetPendingOrders />)}>Ver pedidos pendientes</button>
             <button onClick={()=>setComponent(<GetOrders />)}>Ver historial de pedidos</button>
             <h2>Plantas</h2>
             <button onClick={()=>setComponent(<AddPlants />)}>Agregar tipo de planta</button>

@@ -3,11 +3,10 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import Options from "../component/options";
-import GetPlants from "../component/getPlants";
-import AddPlants from "../component/addPlants";
-import AddOrder from "../component/addOrder";
+import GetPendingOrders from "../component/getPendingOrders";
+
 export const Admin = () => {
-	const [component, setComponent] = useState(<AddOrder />) 
+	const [component, setComponent] = useState(<GetPendingOrders />) 
 	const setAndClose = (comp) => {
 		setComponent(comp);
 
