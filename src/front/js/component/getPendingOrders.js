@@ -22,22 +22,22 @@ export default function GetPendingOrders(){
             if(ascOrder){
                 newOrder.sort((a,b)=>a[sortingBy]-b[sortingBy]) 
                 actions.updateOrders(newOrder)
-                setAscOrder(!ascOrder)
             }else if(!ascOrder){
                 newOrder.sort((a,b)=>b[sortingBy]-a[sortingBy])
                 actions.updateOrders(newOrder)
-                setAscOrder(!ascOrder)
             }
+            setAscOrder(!ascOrder)
         }
    
     return(
         <>  
         <div className="table-responsive responsive-font">
+            <button onClick={()=>console.log(datosPersonales)}> datos personales</button>
             <button onClick={()=>console.log(store.orders)}> Store Orders</button>
             <table className="table">
                 <thead>
                     <tr>
-                        <th className="clickeable" onClick={()=> numberSort("id")} > ID <span> 💥</span></th>
+                        <th className="clickeable" onClick={()=> {numberSort("id") ; console.log(ascOrder)}} > ID <span> 💥</span></th>
 
                         <th className="clickeable"> Nombre del Cliente <span> 💥</span></th>
 
