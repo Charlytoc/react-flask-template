@@ -49,7 +49,7 @@ class Shoe(db.Model):
     # Check documentation for choices field
     # category = db.Column(db.String, nullable=False, server_default='Magnolia', choices=['Magnolia', 'Taco'])
     photo = db.Column(db.String, nullable=False)
-    price = db.Column(db.String, nullable=True)
+    price = db.Column(db.Integer, nullable=True)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=True)
 
 
