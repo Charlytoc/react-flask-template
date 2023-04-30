@@ -19,7 +19,7 @@ import GetPendingOrders from "../component/getPendingOrders";
 
 export const Admin = () => {
 	const [searchParams, setSearchparams] = useSearchParams()
-	const [component, setComponent] = useState() 
+	const [component, setComponent] = useState(<AddOrder />) 
 	
 	const setAndClose = (comp, string) => {
 		setComponent(comp);
@@ -30,8 +30,8 @@ export const Admin = () => {
 		setSearchparams({section: string})
 	}
 	
-	const obj = {
-		"agregar-nuevo-pedido": <AddOrder />,
+	const sectionComponentsMap = {
+		"agregar.nuevo.pedido": <AddOrder />,
 		"ver-pedidos-pendientes": <GetPendingOrders />,
 		"ver-historial-de-pedidos": <GetOrders />,
 		"agregar-tipo-de-planta": <AddPlants />,
@@ -46,14 +46,10 @@ export const Admin = () => {
 
 	useEffect(()=>{
 		const currentURL = window.location.href;
-		console.log(currentURL);
 		const sectionRegex = /section=([^&]+)/;
-		const match = currentURL.match(sectionRegex);
-		const section = match ? match[1] : null;
-		console.log("Esto es el query " + section); // "test2"
-		console.log("Este es el component almacenado en el objeto en la seccion ", section , obj[section]);
-
-		setComponent(obj[section])
+		const querySectionMatch = currentURL.match(sectionRegex);
+		const section = querySectionMatch ? querySectionMatch[1] : "agregar-nuevo-pedido";
+		setComponent(sectionComponentsMap[section])
 	}, [])
 
 
@@ -62,8 +58,6 @@ export const Admin = () => {
 
 	return (
         <>
-		 <button onClick={()=> addSectionQueryParam("testing")}> add Section</button>
-		 <button onClick={()=> setSearchparams({})}> Reset Path</button>
 		 <div id="admin-page-container">
 			<Options showCurrentComponent={setAndClose} /> 
 			{component}

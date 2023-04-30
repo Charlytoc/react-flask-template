@@ -22,7 +22,7 @@ export default function Options({showCurrentComponent}) {
             <h2>Pedidos</h2>
             <button onClick={()=>showCurrentComponent(<AddOrder />, "agregar-nuevo-pedido")} >Agregar nuevo pedido</button>
             <button onClick={()=>showCurrentComponent(<GetPendingOrders />, "ver-pedidos-pendientes")}>Ver pedidos pendientes</button>
-            <button onClick={()=>showCurrentComponent(<GetOrders />, "ver-historial-de-pedidos")}>Ver historial de pedidos</button>
+            <button onClick={()=>showCurrentComponent(<GetOrders />, "ver-34t43t3-pendientes")}>Ver historial de pedidos</button>
             <h2>Plantas</h2>
             <button onClick={()=>showCurrentComponent(<AddPlants />, "agregar-tipo-de-planta")}>Agregar tipo de planta</button>
             <button onClick={()=>showCurrentComponent(<GetPlants />, "ver-inventario-de-plantas")}>Ver inventario de plantas</button>
