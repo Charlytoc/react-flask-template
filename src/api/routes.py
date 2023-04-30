@@ -25,7 +25,6 @@ def handle_hello():
 # When you visit this endpoint it will create a test dataset
 # Dentro de api/route tenemos 2 argumentos, el primero , el endpoint que queremos expoenr
 # el segundo los metodos que se van a aceptar en ese endpoint
-# Investigar cuales son los metodos HTTP -> Post Get Put Delete 
 @api.route('/', methods=['GET'])
 def create_dataset():
     print ("Succesfully Created")

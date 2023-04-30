@@ -8,6 +8,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			master:[],
 			orders:[],
 		},
+		setStore: setStore,
+		// datosPersonales: {
+		// 	nombre: "Carlos",
+		// 	apellido: "Carranza",
+		// },
 		actions: {
 			
 			fetchSignup: async(email,password,showMessage)=>{
