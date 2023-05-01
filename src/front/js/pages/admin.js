@@ -31,7 +31,7 @@ export const Admin = () => {
 	}
 	
 	const sectionComponentsMap = {
-		"agregar.nuevo.pedido": <AddOrder />,
+		"agregar-nuevo-pedido": <AddOrder />,
 		"ver-pedidos-pendientes": <GetPendingOrders />,
 		"ver-historial-de-pedidos": <GetOrders />,
 		"agregar-tipo-de-planta": <AddPlants />,

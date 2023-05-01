@@ -216,7 +216,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			updateOrderStatus: async (orderId, status) => {
 				try {
-				  const response = await fetch(process.env.BACKEND_URL + `/api/update/order`, {
+				  const response = await fetch(process.env.BACKEND_URL + `/api/update/orders`, {
 					method: "POST",
 					headers: {
 					  "Content-Type": "application/json",

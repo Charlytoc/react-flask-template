@@ -70,8 +70,10 @@ export default function GetPendingOrders(){
     return(
         <>  
         <div className="table-responsive responsive-font">
-            <button onClick={()=>console.log(datosPersonales)}> datos personales</button>
-            <button onClick={()=>console.log(store.orders)}> Store Orders</button>
+            <div className="container mt-3">
+                <button onClick={()=>console.log(store.orders)}> Store Orders</button>
+                <button onClick={()=>console.log(store.orders)} className="float-end me-5 button-dark"> Store Orders</button>
+            </div>
             <table className="table">
                 <thead>
                     <tr>
