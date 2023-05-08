@@ -19,9 +19,9 @@ export const Home = () => {
 	return(
 
 		<div>
-			<input type="number" placeholder="suma un numero al resultado" onChange={(e)=>handleChange(e)}/>
+			{/* <input type="number" placeholder="suma un numero al resultado" onChange={(e)=>handleChange(e)}/>
 			<button onClick={()=>sumar()}>sumar</button>
-			<span>{resultado}</span>
+			<span>{resultado}</span> */}
 		</div>
 	)
 };
