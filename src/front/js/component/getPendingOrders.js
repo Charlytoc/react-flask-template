@@ -8,66 +8,84 @@ export default function GetPendingOrders(){
 
     const [ascOrder, setAscOrder] = useState(true)
 
-    const [ordersCheckbox, setOrdersCheckbox] = useState([])
+    // const [ordersCheckbox, setOrdersCheckbox] = useState([])
     
-    const [ordersIds, setOrdersIds] = useState([])
+    // const [ordersIds, setOrdersIds] = useState([])
     
-    const [statuses, setStatuses] = useState([])
+    // const [statuses, setStatuses] = useState([])
+
+    // const [counter, setCounter] = useState(0)
     
     
     useEffect(()=>{
         actions.getOrders()
         }, [])
 
-        // Below you will find the "update status and communicate with endpoint for update" function
-
-        // const updateCheckboxStatus = (orderId)=>{
-            
-        //     const orderIndex = ordersCheckbox.findIndex(order => order.id === orderId)
-        //     const newOrdersCheckbox = [...ordersCheckbox]
-
-        //     if( orderIndex === -1){
-        //         newOrdersCheckbox.push({id: orderId, checkboxSelected: true})
-        //     }else{
-        //         newOrdersCheckbox[orderIndex].checkboxSelected = !newOrdersCheckbox[orderIndex].checkboxSelected
-        //     }
-        //     setOrdersCheckbox(newOrdersCheckbox)
-
-        //     const newStatuses = [...statuses];
-        //     newStatuses[orderIndex] = newOrdersCheckbox[orderIndex]?.checkboxSelected ? 'Terminado' : 'Pendiente';
-        //     setStatuses(newStatuses);
-
-        //     const orderAlreadyExists = ordersIds.includes(orderId);
-        //     if (!orderAlreadyExists) {
-        //         setOrdersIds([...ordersIds, orderId]);
-        //     }
-        // }
 
         const updateCheckboxStatus = (orderId) => {
-            const orderIndex = ordersCheckbox.findIndex((order) => order.id === orderId);
-            const newOrdersCheckbox = [...ordersCheckbox];
+            // const orderIndex = ordersCheckbox.findIndex((order) => order.id === orderId);
+
+            // const order = store.orders.find((order) => order.id === orderId);            
+            // order.isSelected = !order.isSelected
+
+            //  === === === === === //
+            // let newOrdersArray = store.orders.map((order)=>{
+            //     if(order.id !== orderId){
+            //         return order
+            //     } 
+            //     return{...order, isSelected: !order.isSelected}
+            // })
+            //  === === === === === //
+
+            // return {...order, order.isSelected ? order.status === "Terminado" : order.status === "Pendiente"}
+
+            actions.updateOrders(store.orders.map((order)=>{
+                if(order.id !== orderId){
+                    return order
+                } 
+                return{...order, isSelected: !order.isSelected}
+            }))
+                return
+        };
+            // const newOrdersCheckbox = [...ordersCheckbox];
           
-            if (orderIndex === -1) {
-              newOrdersCheckbox.push({ id: orderId, checkboxSelected: true });
-            } else {
-              newOrdersCheckbox[orderIndex].checkboxSelected = !newOrdersCheckbox[orderIndex].checkboxSelected;
-            }
-            setOrdersCheckbox(newOrdersCheckbox);
+            // if (orderIndex === -1) {
+            //   newOrdersCheckbox.push({ id: orderId, checkboxSelected: true });
+              
+            // } else {
+            //   newOrdersCheckbox[orderIndex].checkboxSelected = !newOrdersCheckbox[orderIndex].checkboxSelected;
+            // //   console.log(newOrdersCheckbox[orderIndex].checkboxSelected);
+            // }
+            // setOrdersCheckbox(newOrdersCheckbox);
           
-            const orderAlreadyExists = ordersIds.includes(orderId);
-            const newStatuses = [...statuses];
+            // const orderAlreadyExists = ordersIds.includes(orderId);
+            // const newStatuses = [...statuses];
+            // const newOrdersIds = [...ordersIds] 
           
-            if (!orderAlreadyExists) {
-              newStatuses.push('Terminado');
-              setOrdersIds([...ordersIds, orderId]);
-            } else {
-              newStatuses[orderIndex] = newOrdersCheckbox[orderIndex].checkboxSelected ? 'Terminado' : 'Pendiente';
-            }
-            setStatuses(newStatuses);
-          };
+            // if (!orderAlreadyExists) {
+            //   newStatuses.push('Terminado');
+            //   newOrdersIds.push(orderId);
+            //   console.log(newOrdersIds);
+            // } else {
+            //         // console.log("Pre Splice " + newStatuses);
+            //         newOrdersCheckbox.splice(orderIndex , 1)
+            //         newOrdersIds.splice(orderIndex, 1)
+            //         newStatuses.splice(orderIndex, 1)
+            //         // console.log("POST Splice " + newStatuses);
+            // }
+            // setOrdersIds(newOrdersIds)
+            // setStatuses(newStatuses);
+            // // setCounter(newStatuses.length)
+         
+
+
+        const pendingItems = store.orders.filter((item)=>{return item.status === "Pendiente" && item.isSelected})
 
         const updateStatus = ()=>{
-            actions.updateOrderStatus(ordersIds, statuses)
+            pendingItems.map(item=> item.status === "Terminado")
+            actions.updateOrderStatus(pendingItems.map(item=> ({id: item.id, status: "Terminado"})
+            ))
+            console.log(pendingItems);
         }
 
 
@@ -120,16 +138,15 @@ export default function GetPendingOrders(){
             actions.updateOrders(newOrder)
         }
 
-        
-
-        
-   
     return(
         <>  
         <div className="table-responsive responsive-font">
             <div className="container mt-3">
                 <button onClick={()=>console.log(store.orders)}> Store Orders</button>
-                <button onClick={()=>{updateStatus() ; console.log(ordersIds); console.log(statuses)}} className="float-end me-5 button-dark"> Actualizar Status </button>
+                <button onClick={updateStatus}
+                    className="float-end me-5 button-dark"> 
+                    Actualizar Status de: {pendingItems.length}
+                </button>
             </div>
             <table className="table">
                 <thead>
@@ -151,7 +168,8 @@ export default function GetPendingOrders(){
                     </tr>
                 </thead>
                 <tbody>
-                    {store.orders.filter((item)=>{return item.status === "Pendiente"}).map((order,index)=>{
+                    {store.orders.filter((item)=>{return item.status === "Pendiente"})
+                    .map((order,index)=>{
                         return(
                         <tr  key={index}>
                             <td> {order.id}</td>
@@ -163,7 +181,8 @@ export default function GetPendingOrders(){
                             <td> {order.master.name}</td>
                             <td>{new Date(order.delivery_date).toLocaleDateString('es', { year: 'numeric', month: 'short', day: 'numeric' })}</td>
                             <td> {order.status} 
-                                <input type="checkbox" 
+                                <input type="checkbox"
+                                checked={order.isSelected || false} 
                                 onClick={()=> {updateCheckboxStatus(order.id) }
                                 } 
                                

@@ -214,16 +214,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			  },
 
-			updateOrderStatus: async (ordersIds, statuses) => {
+			updateOrderStatus: async (orders) => {
 				try {
-					const orders = ordersIds.map((orderId, index)=>( {id: orderId, status: statuses[index]} ) )
+					// const orders = ordersIds.map((orderId, index)=>( {id: orderId, status: statuses[index]} ) )
 				  	const response = await fetch(process.env.BACKEND_URL + `/api/update/orders`, {
 					method: "POST",
 					headers: {
 					  "Content-Type": "application/json",
 					},
 					body: JSON.stringify({
-						"orders": orders
+						orders
 					}),
 				  });
 				  	const result = await response.json();
