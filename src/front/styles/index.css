@@ -372,6 +372,7 @@ background-attachment: fixed;
     font-size: 27px;
     letter-spacing: 8px;
     text-transform: uppercase;
+    color: white;
    
 
 }
@@ -386,5 +387,21 @@ display: inline;
         background-attachment:scroll ;
     }   
 }
+.final-div{
+   
+    text-align: center;
+    position: relative;
+}
 
+.final-text{
+    background-color: transparent;
+    color: white;
+    position: absolute;
+    left: 20px;
+    top:150px;
+    font-size: 40px;
+    line-height: 1;
+   
+    
+}
 

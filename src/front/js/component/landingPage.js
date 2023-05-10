@@ -12,7 +12,7 @@ export const LandingPage = () => (
     {/* first section */}
 	<div className="landing-image-1" style={{ backgroundImage: `url(${hombre})` }}>
         <div className="ptext">
-            <span className="border">
+            <span className="">
             ¡Bienvenidos a nuestra zapatería en línea!
             </span>
         </div>
@@ -25,7 +25,7 @@ export const LandingPage = () => (
 	<div className="landing-image-2" style={{ backgroundImage: `url(${tacos})` }}>
         <div className="ptext">
             <span className="border">
-                image 2 text
+                 ortopédicos
             </span>
         </div>
     </div>
@@ -37,7 +37,7 @@ export const LandingPage = () => (
 	<div className="landing-image-3" style={{ backgroundImage: `url(${variados})` }}>
         <div className="ptext">
             <span className="border">
-               image 3 text
+              Tacos
             </span>
         </div>
     </div>
@@ -50,7 +50,7 @@ export const LandingPage = () => (
     <div className="landing-image-1" style={{ backgroundImage: `url(${hombre})` }}>
         <div className="ptext">
             <span className="border">
-                website
+                Deportivos
             </span>
         </div>
     </div>
@@ -62,7 +62,7 @@ export const LandingPage = () => (
     <div className="landing-image-2" style={{ backgroundImage: `url(${tacos})` }}>
         <div className="ptext">
             <span className="border">
-                image 2 text
+                Escolares
             </span>
         </div>
     </div>
@@ -74,7 +74,7 @@ export const LandingPage = () => (
     <div className="landing-image-3" style={{ backgroundImage: `url(${variados})` }}>
         <div className="ptext">
             <span className="border">
-               image 3 text
+               Botas Industriales
             </span>
         </div>
     </div>
@@ -84,8 +84,8 @@ export const LandingPage = () => (
     </section>
 
     <div className="landing-image-1" style={{ backgroundImage: `url(${hombre})` }}>
-        <div className="ptext">
-            <span className="border">
+        <div className="final-div">
+            <span className="final-text ">
             Además de nuestra amplia selección de zapatos, ofrecemos precios competitivos y un servicio al cliente excepcional. ¡No dudes en navegar por nuestra tienda en línea y encontrar el par de zapatos perfecto para ti!
             </span>
         </div>
