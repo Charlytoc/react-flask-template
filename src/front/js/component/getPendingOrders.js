@@ -7,38 +7,17 @@ export default function GetPendingOrders(){
     const {store,actions} = useContext(Context);
 
     const [ascOrder, setAscOrder] = useState(true)
+    const [orders, setOrders] = useState([])
 
-    // const [ordersCheckbox, setOrdersCheckbox] = useState([])
-    
-    // const [ordersIds, setOrdersIds] = useState([])
-    
-    // const [statuses, setStatuses] = useState([])
-
-    // const [counter, setCounter] = useState(0)
-    
-    
     useEffect(()=>{
         actions.getOrders()
         }, [])
 
+    useEffect(()=>{
+        setOrders(store.orders)
+        }, [store])
 
         const updateCheckboxStatus = (orderId) => {
-            // const orderIndex = ordersCheckbox.findIndex((order) => order.id === orderId);
-
-            // const order = store.orders.find((order) => order.id === orderId);            
-            // order.isSelected = !order.isSelected
-
-            //  === === === === === //
-            // let newOrdersArray = store.orders.map((order)=>{
-            //     if(order.id !== orderId){
-            //         return order
-            //     } 
-            //     return{...order, isSelected: !order.isSelected}
-            // })
-            //  === === === === === //
-
-            // return {...order, order.isSelected ? order.status === "Terminado" : order.status === "Pendiente"}
-
             actions.updateOrders(store.orders.map((order)=>{
                 if(order.id !== orderId){
                     return order
@@ -47,47 +26,15 @@ export default function GetPendingOrders(){
             }))
                 return
         };
-            // const newOrdersCheckbox = [...ordersCheckbox];
-          
-            // if (orderIndex === -1) {
-            //   newOrdersCheckbox.push({ id: orderId, checkboxSelected: true });
-              
-            // } else {
-            //   newOrdersCheckbox[orderIndex].checkboxSelected = !newOrdersCheckbox[orderIndex].checkboxSelected;
-            // //   console.log(newOrdersCheckbox[orderIndex].checkboxSelected);
-            // }
-            // setOrdersCheckbox(newOrdersCheckbox);
-          
-            // const orderAlreadyExists = ordersIds.includes(orderId);
-            // const newStatuses = [...statuses];
-            // const newOrdersIds = [...ordersIds] 
-          
-            // if (!orderAlreadyExists) {
-            //   newStatuses.push('Terminado');
-            //   newOrdersIds.push(orderId);
-            //   console.log(newOrdersIds);
-            // } else {
-            //         // console.log("Pre Splice " + newStatuses);
-            //         newOrdersCheckbox.splice(orderIndex , 1)
-            //         newOrdersIds.splice(orderIndex, 1)
-            //         newStatuses.splice(orderIndex, 1)
-            //         // console.log("POST Splice " + newStatuses);
-            // }
-            // setOrdersIds(newOrdersIds)
-            // setStatuses(newStatuses);
-            // // setCounter(newStatuses.length)
-         
-
 
         const pendingItems = store.orders.filter((item)=>{return item.status === "Pendiente" && item.isSelected})
 
         const updateStatus = ()=>{
-            pendingItems.map(item=> item.status === "Terminado")
+            pendingItems.map(item => ({ ...item, status: "blabla" }))
             actions.updateOrderStatus(pendingItems.map(item=> ({id: item.id, status: "Terminado"})
             ))
             console.log(pendingItems);
         }
-
 
         // Below you will find all the Sorting functions
 
