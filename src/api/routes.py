@@ -207,26 +207,38 @@ def add_model():
 
     response_body = "You have a new model"
     return jsonify(response_body), 200
+    
 
-@api.route("/update/order", methods=["POST"])
-def update_order():
-    order_id = request.json.get("id", None)
-    new_status = request.json.get("status", None)
+@api.route("/update/orders", methods=["POST"])
+def update_orders():
+    order_data = request.json.get("orders", None)
 
-    if not order_id or not new_status:
+    if not order_data:
         return jsonify("Invalid request"), 400
 
-    order = Order.query.filter_by(id=order_id).first()
+    updated_orders = []
+    for order in order_data:
+        order_id = order.get("id", None)
+        new_status = order.get("status", None)
 
-    if not order:
-        return jsonify("Order not found"), 404
+        if not order_id or not new_status:
+            return jsonify("Invalid request"), 400
 
-    order.status = new_status
-    db.session.commit()
+        order = Order.query.filter_by(id=order_id).first()
+
+        if not order:
+            return jsonify("Order not found"), 404
+
+        order.status = new_status
+        db.session.commit()
+
+        updated_orders.append({
+            'id': order.id,
+            'status': order.status
+        })
 
     response_body = {
-        'id': order.id,
-        'status': order.status
+        'updated_orders': updated_orders
     }
 
     return jsonify(response_body), 200

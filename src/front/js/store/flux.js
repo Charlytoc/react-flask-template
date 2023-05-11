@@ -214,25 +214,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			  },
 
-			updateOrderStatus: async (orderId, status) => {
+			updateOrderStatus: async (orders) => {
 				try {
-				  const response = await fetch(process.env.BACKEND_URL + `/api/update/order`, {
+					// const orders = ordersIds.map((orderId, index)=>( {id: orderId, status: statuses[index]} ) )
+				  	const response = await fetch(process.env.BACKEND_URL + `/api/update/orders`, {
 					method: "POST",
 					headers: {
 					  "Content-Type": "application/json",
 					},
 					body: JSON.stringify({
-						"id": orderId,
-						"status": status,
+						orders
 					}),
 				  });
-			  
-				  if (response.ok) {
-					console.log(`Order ${orderId} status updated to ${status}`);
-					// You may also choose to update the store or trigger a fetch for the updated orders
-				  } else {
-					console.error(`Failed to update order ${orderId} status: ${response.statusText}`);
-				  }
+				  	const result = await response.json();
+        			return result;
 				} catch (error) {
 				  console.error(`Failed to update order ${orderId} status: ${error.message}`);
 				}
